@@ -1,0 +1,16 @@
+{
+  "name": "react-native-swipe-gestures",
+  "version": "1.0.0",
+  "description": "4-directional swipe gestures for react-native",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "react-native",
+    "swipe",
+    "gesture"
+  ],
+  "author": "Goran Lepur <goran.lepur1@gmail.com>",
+  "license": "MIT"
+}
