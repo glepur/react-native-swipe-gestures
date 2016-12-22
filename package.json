@@ -6,6 +6,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:glepur/react-native-swipe-gestures.git"
+  },
   "keywords": [
     "react-native",
     "swipe",
