@@ -15,6 +15,9 @@
     "swipe",
     "gesture"
   ],
+  "bugs": {
+    "url": "https://github.com/glepur/react-native-swipe-gestures/issues"
+  },
   "author": "Goran Lepur <goran.lepur1@gmail.com>",
   "license": "MIT"
 }
