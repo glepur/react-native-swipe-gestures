@@ -11,8 +11,8 @@ export const swipeDirections = {
 };
 
 const swipeConfig = {
-  velocityThreshold: 0.5,
-  directionalOffsetThreshold: 40
+  velocityThreshold: 0.3,
+  directionalOffsetThreshold: 80
 };
 
 function isValidSwipe(velocity, velocityThreshold, directionalOffset, directionalOffsetThreshold) {
