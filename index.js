@@ -40,8 +40,8 @@ class GestureRecognizer extends Component {
     });
   }
 
-  _handleShouldSetPanResponder(evt) {
-    return evt.nativeEvent.touches.length === 1;
+  _handleShouldSetPanResponder(evt, gestureState) {
+    return evt.nativeEvent.touches.length === 1 && Math.abs(gestureState.dx) > 5;
   }
 
   _handlePanResponderEnd(evt, gestureState) {
