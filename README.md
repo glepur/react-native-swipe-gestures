@@ -62,6 +62,11 @@ class SomeComponent extends Component {
   }
 
   render() {
+    
+    const config = {
+      velocityThreshold: 0.3,
+      directionalOffsetThreshold: 80
+    };
 
     return (
       <GestureRecognizer
@@ -70,6 +75,7 @@ class SomeComponent extends Component {
         onSwipeDown={(state) => this.onSwipeDown(state)}
         onSwipeLeft={(state) => this.onSwipeLeft(state)}
         onSwipeRight={(state) => this.onSwipeRight(state)}
+        config={config}
         style={{
           flex: 1,
           backgroundColor: this.state.backgroundColor
@@ -84,6 +90,15 @@ class SomeComponent extends Component {
 
 export default SomeComponent;
 ```
+
+## Config
+
+Can be passed within optional `config` property.
+
+| Params                     | Type          | Default | Description  |
+| -------------------------- |:-------------:| ------- | ------------ |
+| velocityThreshold          | Number        | 0.3     | Velocity that has to be breached in order for swipe to be triggered (`vx` and `vy` peroperties of `gestureState`) |
+| directionalOffsetThreshold | Number        | 80      | Absolute offset that shouldn't be breached for swipe to be triggered (`dy` for horizontal swipe, `dx` for vertical swipe) |
 
 ## Methods
 
