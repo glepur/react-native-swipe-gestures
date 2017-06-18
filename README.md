@@ -42,6 +42,10 @@ class SomeComponent extends Component {
     this.setState({myText: 'You swiped right!'});
   }
 
+  onSwipeMove(gestureState) {
+    console.log(gestureState);
+  }
+
   onSwipe(gestureName, gestureState) {
     const {SWIPE_UP, SWIPE_DOWN, SWIPE_LEFT, SWIPE_RIGHT} = swipeDirections;
     this.setState({gestureName: gestureName});
@@ -62,7 +66,7 @@ class SomeComponent extends Component {
   }
 
   render() {
-    
+
     const config = {
       velocityThreshold: 0.3,
       directionalOffsetThreshold: 80
@@ -71,6 +75,7 @@ class SomeComponent extends Component {
     return (
       <GestureRecognizer
         onSwipe={(direction, state) => this.onSwipe(direction, state)}
+        onSwipeMove={(state) => this.onSwipeMove(state)}
         onSwipeUp={(state) => this.onSwipeUp(state)}
         onSwipeDown={(state) => this.onSwipeDown(state)}
         onSwipeLeft={(state) => this.onSwipeLeft(state)}
@@ -107,6 +112,12 @@ Can be passed within optional `config` property.
 | Params        | Type          | Description  |
 | ------------- |:-------------:| ------------ |
 | gestureName   | String        | Name of the gesture (look example above) |
+| gestureState  | Object        | gestureState received from PanResponder  |
+
+#### onSwipeMove(gestureState)
+
+| Params        | Type          | Description  |
+| ------------- |:-------------:| ------------ |
 | gestureState  | Object        | gestureState received from PanResponder  |
 
 

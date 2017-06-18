@@ -32,10 +32,12 @@ class GestureRecognizer extends Component {
 
   componentWillMount() {
     const responderEnd = this._handlePanResponderEnd.bind(this);
+    const responderMove = this._handlePanResponderMove.bind(this);
     const shouldSetResponder = this._handleShouldSetPanResponder.bind(this);
     this._panResponder = PanResponder.create({ //stop JS beautify collapse
       onStartShouldSetPanResponder: shouldSetResponder,
       onMoveShouldSetPanResponder: shouldSetResponder,
+      onPanResponderMove: responderMove,
       onPanResponderRelease: responderEnd,
       onPanResponderTerminate: responderEnd
     });
@@ -44,7 +46,6 @@ class GestureRecognizer extends Component {
   _handleShouldSetPanResponder(evt, gestureState) {
     return evt.nativeEvent.touches.length === 1 && !this._gestureIsClick(gestureState);
   }
-  
   _gestureIsClick(gestureState) {
     return Math.abs(gestureState.dx) < 5  && Math.abs(gestureState.dy) < 5;
   }
@@ -52,6 +53,15 @@ class GestureRecognizer extends Component {
   _handlePanResponderEnd(evt, gestureState) {
     const swipeDirection = this._getSwipeDirection(gestureState);
     this._triggerSwipeHandlers(swipeDirection, gestureState);
+  }
+
+  _handlePanResponderMove(evt, gestureState) {
+    this._triggerMove(gestureState);
+  }
+
+  _triggerMove(gestureState){
+    const onSwipeMove = this.props.onSwipeMove;
+    onSwipeMove && onSwipeMove(gestureState);
   }
 
   _triggerSwipeHandlers(swipeDirection, gestureState) {
