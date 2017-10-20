@@ -1,5 +1,6 @@
 {
   "name": "react-native-swipe-gestures",
+  "types": "index.d.ts",
   "version": "1.0.2",
   "description": "4-directional swipe gestures for react-native",
   "main": "index.js",
