@@ -7,7 +7,8 @@ export const swipeDirections = {
   SWIPE_UP: 'SWIPE_UP',
   SWIPE_DOWN: 'SWIPE_DOWN',
   SWIPE_LEFT: 'SWIPE_LEFT',
-  SWIPE_RIGHT: 'SWIPE_RIGHT'
+  SWIPE_RIGHT: 'SWIPE_RIGHT',
+  ON_CLICK: 'ON_CLICK',
 };
 
 const swipeConfig = {
@@ -46,7 +47,7 @@ class GestureRecognizer extends Component {
   }
   
   _gestureIsClick(gestureState) {
-    return Math.abs(gestureState.dx) < 5  && Math.abs(gestureState.dy) < 5;
+    return Math.abs(gestureState.dx) == 0  && Math.abs(gestureState.dy) == 0;
   }
 
   _handlePanResponderEnd(evt, gestureState) {
@@ -55,8 +56,8 @@ class GestureRecognizer extends Component {
   }
 
   _triggerSwipeHandlers(swipeDirection, gestureState) {
-    const {onSwipe, onSwipeUp, onSwipeDown, onSwipeLeft, onSwipeRight} = this.props;
-    const {SWIPE_LEFT, SWIPE_RIGHT, SWIPE_UP, SWIPE_DOWN} = swipeDirections;
+    const {onSwipe, onSwipeUp, onSwipeDown, onSwipeLeft, onSwipeRight, onClick} = this.props;
+    const {SWIPE_LEFT, SWIPE_RIGHT, SWIPE_UP, SWIPE_DOWN,ON_CLICK} = swipeDirections;
     onSwipe && onSwipe(swipeDirection, gestureState);
     switch (swipeDirection) {
       case SWIPE_LEFT:
@@ -71,13 +72,18 @@ class GestureRecognizer extends Component {
       case SWIPE_DOWN:
         onSwipeDown && onSwipeDown(gestureState);
         break;
+      case ON_CLICK:
+        onClick && onClick(gestureState);
+        break;
     }
   }
 
   _getSwipeDirection(gestureState) {
-    const {SWIPE_LEFT, SWIPE_RIGHT, SWIPE_UP, SWIPE_DOWN} = swipeDirections;
+    const {SWIPE_LEFT, SWIPE_RIGHT, SWIPE_UP, SWIPE_DOWN,ON_CLICK} = swipeDirections;
     const {dx, dy} = gestureState;
-    if (this._isValidHorizontalSwipe(gestureState)) {
+    if((dx == 0 && dy==0)){return ON_CLICK}
+
+    else if (this._isValidHorizontalSwipe(gestureState)) {
       return (dx > 0)
         ? SWIPE_RIGHT
         : SWIPE_LEFT;
@@ -85,6 +91,9 @@ class GestureRecognizer extends Component {
       return (dy > 0)
         ? SWIPE_DOWN
         : SWIPE_UP;
+    }
+    else  {
+      return ON_CLICK;
     }
     return null;
   }
