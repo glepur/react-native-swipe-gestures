@@ -47,6 +47,9 @@ class GestureRecognizer extends Component {
   }
   
   _gestureIsClick(gestureState) {
+    
+    if((gestureState.dx) == 0  &&(gestureState.dy) == 0 ) return false
+ 
     return Math.abs(gestureState.dx) == 0  && Math.abs(gestureState.dy) == 0;
   }
 
