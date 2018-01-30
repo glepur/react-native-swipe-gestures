@@ -81,9 +81,9 @@ class GestureRecognizer extends Component {
   _getSwipeDirection(gestureState) {
     const {SWIPE_LEFT, SWIPE_RIGHT, SWIPE_UP, SWIPE_DOWN,ON_PRESS} = swipeDirections;
     const {dx, dy} = gestureState;
-    if((dx <5 && dy < 5)){return ON_PRESS}
-
-    else if (this._isValidHorizontalSwipe(gestureState)) {
+    if(dx <5 && dy < 5) {
+      return ON_PRESS;
+    } else if (this._isValidHorizontalSwipe(gestureState)) {
       return (dx > 5)
         ? SWIPE_RIGHT
         : SWIPE_LEFT;
@@ -91,9 +91,6 @@ class GestureRecognizer extends Component {
       return (dy > 5)
         ? SWIPE_DOWN
         : SWIPE_UP;
-    }
-    else  {
-      return ON_PRESS;
     }
     return null;
   }
