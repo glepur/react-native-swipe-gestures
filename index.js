@@ -8,7 +8,7 @@ export const swipeDirections = {
   SWIPE_DOWN: 'SWIPE_DOWN',
   SWIPE_LEFT: 'SWIPE_LEFT',
   SWIPE_RIGHT: 'SWIPE_RIGHT',
-  ON_CLICK: 'ON_CLICK',
+  ON_PRESS: 'ON_PRESS',
 };
 
 const swipeConfig = {
@@ -43,14 +43,11 @@ class GestureRecognizer extends Component {
   }
 
   _handleShouldSetPanResponder(evt, gestureState) {
-    return evt.nativeEvent.touches.length === 1 && !this._gestureIsClick(gestureState);
+    return evt.nativeEvent.touches.length === 1 && !this._gestureIsPress(gestureState);
   }
   
-  _gestureIsClick(gestureState) {
-    
-    if((gestureState.dx) == 0  &&(gestureState.dy) == 0 ) return false
- 
-    return Math.abs(gestureState.dx) == 0  && Math.abs(gestureState.dy) == 0;
+  _gestureIsPress(gestureState) {
+    return Math.abs(gestureState.dx) < 5  && Math.abs(gestureState.dy) < 5;
   }
 
   _handlePanResponderEnd(evt, gestureState) {
@@ -59,8 +56,8 @@ class GestureRecognizer extends Component {
   }
 
   _triggerSwipeHandlers(swipeDirection, gestureState) {
-    const {onSwipe, onSwipeUp, onSwipeDown, onSwipeLeft, onSwipeRight, onClick} = this.props;
-    const {SWIPE_LEFT, SWIPE_RIGHT, SWIPE_UP, SWIPE_DOWN,ON_CLICK} = swipeDirections;
+    const {onSwipe, onSwipeUp, onSwipeDown, onSwipeLeft, onSwipeRight, onPress} = this.props;
+    const {SWIPE_LEFT, SWIPE_RIGHT, SWIPE_UP, SWIPE_DOWN,ON_PRESS} = swipeDirections;
     onSwipe && onSwipe(swipeDirection, gestureState);
     switch (swipeDirection) {
       case SWIPE_LEFT:
@@ -75,28 +72,28 @@ class GestureRecognizer extends Component {
       case SWIPE_DOWN:
         onSwipeDown && onSwipeDown(gestureState);
         break;
-      case ON_CLICK:
-        onClick && onClick(gestureState);
+      case ON_PRESS:
+        onPress && onPress(gestureState);
         break;
     }
   }
 
   _getSwipeDirection(gestureState) {
-    const {SWIPE_LEFT, SWIPE_RIGHT, SWIPE_UP, SWIPE_DOWN,ON_CLICK} = swipeDirections;
+    const {SWIPE_LEFT, SWIPE_RIGHT, SWIPE_UP, SWIPE_DOWN,ON_PRESS} = swipeDirections;
     const {dx, dy} = gestureState;
-    if((dx == 0 && dy==0)){return ON_CLICK}
+    if((dx <5 && dy < 5)){return ON_PRESS}
 
     else if (this._isValidHorizontalSwipe(gestureState)) {
-      return (dx > 0)
+      return (dx > 5)
         ? SWIPE_RIGHT
         : SWIPE_LEFT;
     } else if (this._isValidVerticalSwipe(gestureState)) {
-      return (dy > 0)
+      return (dy > 5)
         ? SWIPE_DOWN
         : SWIPE_UP;
     }
     else  {
-      return ON_CLICK;
+      return ON_PRESS;
     }
     return null;
   }
