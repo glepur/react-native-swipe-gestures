@@ -27,7 +27,7 @@ function isValidSwipe(
 	return (
 		Math.abs(velocity) > minVelocity
 		&& (!minDistance || Math.abs(distance) >= minDistance)
-		&& (!maxOtherDistance || Math.abs(otherDistance) < maxOtherDistance)
+		&& (!maxOtherDistance || Math.abs(otherDistance) < Math.abs(distance))
 	);
 }
 
