@@ -102,17 +102,22 @@ class GestureRecognizer extends Component {
   }
 
   render() {
-    const { scroll, enableScroll, content } = this.props
+    const { scroll, content, ...restProps } = this.props
     return (scroll ?
-      <Animated.ScrollView scrollEnabled={enableScroll} {...this._panResponder.panHandlers}>
+      <Animated.ScrollView {...restProps} {...this._panResponder.panHandlers}>
         {content()}
       </Animated.ScrollView>
       :
-      <View {...this.props} {...this._panResponder.panHandlers} >
+      <View {...restProps} {...this._panResponder.panHandlers} >
         {content()}
       </View>
     )
   }
 };
+
+GestureRecognizer.defaultProps={
+  scroll: false,
+  content: ()=>{},
+}
 
 export default GestureRecognizer;
