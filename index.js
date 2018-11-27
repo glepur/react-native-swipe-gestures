@@ -34,18 +34,24 @@ class GestureRecognizer extends Component {
   componentWillMount() {
     const responderEnd = this._handlePanResponderEnd.bind(this);
     const shouldSetResponder = this._handleShouldSetPanResponder.bind(this);
+    const responderTerminationRequest = this._handleResponderTerminationRequest.bind(this);
     this._panResponder = PanResponder.create({ //stop JS beautify collapse
       onStartShouldSetPanResponder: shouldSetResponder,
       onMoveShouldSetPanResponder: shouldSetResponder,
       onPanResponderRelease: responderEnd,
-      onPanResponderTerminate: responderEnd
+      onPanResponderTerminate: responderEnd,
+      onPResponderTerminateRequest:responderTerminationRequest
     });
   }
+  
+  _handleResponderTerminationRequest(evt){
+      return this.props.responderTerminationRequest;
+    }
 
   _handleShouldSetPanResponder(evt, gestureState) {
     return evt.nativeEvent.touches.length === 1 && !this._gestureIsClick(gestureState);
   }
-  
+
   _gestureIsClick(gestureState) {
     return Math.abs(gestureState.dx) < swipeConfig.gestureIsClickThreshold
       && Math.abs(gestureState.dy) < swipeConfig.gestureIsClickThreshold;
