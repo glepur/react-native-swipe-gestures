@@ -12,7 +12,8 @@ export const swipeDirections = {
 
 const swipeConfig = {
   velocityThreshold: 0.3,
-  directionalOffsetThreshold: 80
+  directionalOffsetThreshold: 80,
+  gestureIsClickThreshold: 5
 };
 
 function isValidSwipe(velocity, velocityThreshold, directionalOffset, directionalOffsetThreshold) {
@@ -46,7 +47,8 @@ class GestureRecognizer extends Component {
   }
   
   _gestureIsClick(gestureState) {
-    return Math.abs(gestureState.dx) < 5  && Math.abs(gestureState.dy) < 5;
+    return Math.abs(gestureState.dx) < swipeConfig.gestureIsClickThreshold
+      && Math.abs(gestureState.dy) < swipeConfig.gestureIsClickThreshold;
   }
 
   _handlePanResponderEnd(evt, gestureState) {
