@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import { View, PanResponder, Animated } from 'react-native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 export const swipeDirections = {
   SWIPE_UP: 'SWIPE_UP',
@@ -18,7 +19,7 @@ const swipeConfig = {
 function isValidSwipe(velocity, velocityThreshold, directionalOffset, directionalOffsetThreshold) {
   return Math.abs(velocity) > velocityThreshold && Math.abs(directionalOffset) < directionalOffsetThreshold;
 }
-
+const AnimatedScroll=Animated.createAnimatedComponent(KeyboardAwareScrollView)
 class GestureRecognizer extends Component {
 
   constructor(props, context) {
@@ -104,9 +105,9 @@ class GestureRecognizer extends Component {
   render() {
     const { scroll, content, ...restProps } = this.props
     return (scroll ?
-      <Animated.ScrollView {...restProps} {...this._panResponder.panHandlers}>
+      <AnimatedScroll {...restProps} {...this._panResponder.panHandlers}>
         {content()}
-      </Animated.ScrollView>
+      </AnimatedScroll>
       :
       <View {...restProps} {...this._panResponder.panHandlers} >
         {content()}
