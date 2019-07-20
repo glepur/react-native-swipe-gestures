@@ -25,13 +25,7 @@ class GestureRecognizer extends Component {
   constructor(props, context) {
     super(props, context);
     this.swipeConfig = Object.assign(swipeConfig, props.config);
-  }
 
-  componentWillReceiveProps(props) {
-    this.swipeConfig = Object.assign(swipeConfig, props.config);
-  }
-
-  componentWillMount() {
     const responderEnd = this._handlePanResponderEnd.bind(this);
     const shouldSetResponder = this._handleShouldSetPanResponder.bind(this);
     this._panResponder = PanResponder.create({ //stop JS beautify collapse
@@ -41,7 +35,13 @@ class GestureRecognizer extends Component {
       onPanResponderTerminate: responderEnd
     });
   }
-
+  
+  componentDidUpdate(prevProps) {
+    if (this.props.config !== prevProps.config) {
+      this.swipeConfig = Object.assign(swipeConfig, this.props.config);
+    }
+  }
+  
   _handleShouldSetPanResponder(evt, gestureState) {
     return evt.nativeEvent.touches.length === 1 && !this._gestureIsClick(gestureState);
   }
