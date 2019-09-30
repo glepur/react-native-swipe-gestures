@@ -62,7 +62,7 @@ class SomeComponent extends Component {
   }
 
   render() {
-    
+
     const config = {
       velocityThreshold: 0.3,
       directionalOffsetThreshold: 80
@@ -70,7 +70,7 @@ class SomeComponent extends Component {
 
     return (
       <GestureRecognizer
-        onSwipe={(direction, state) => this.onSwipe(direction, state)}
+        onSwipe={this.onSwipe}
         onSwipeUp={this.onSwipeUp}
         onSwipeDown={this.onSwipeDown}
         onSwipeLeft={this.onSwipeLeft}
