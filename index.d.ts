@@ -1,13 +1,11 @@
 declare module 'react-native-swipe-gestures' {
-  import { Component, ReactNode } from 'react';
+  import { Component } from 'react';
   import {
-    StyleProp,
-    ViewStyle,
-    ViewProperties,
-    PanResponderGestureState
+    PanResponderGestureState,
+    ViewProps
   } from 'react-native';
 
-  export interface GestureRecognizerProps extends ViewProperties {
+  export interface GestureRecognizerProps extends ViewProps {
     config?: GestureRecognizerConfig;
     onSwipe?(gestureName: string, gestureState: PanResponderGestureState): void;
     onSwipeUp?(gestureState: PanResponderGestureState): void;
@@ -28,6 +26,12 @@ declare module 'react-native-swipe-gestures' {
      * @default 80
      */
     directionalOffsetThreshold?: number;
+
+    /**
+     * Absolute distance that should be breached for the gesture to not be considered a click (dx or dy properties of gestureState)
+     * @default 5
+     */
+    gestureIsClickThreshold?: number;
   }
 
   class GestureRecognizer extends Component<GestureRecognizerProps> {}
