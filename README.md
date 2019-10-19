@@ -62,7 +62,7 @@ class SomeComponent extends Component {
   }
 
   render() {
-    
+
     const config = {
       velocityThreshold: 0.3,
       directionalOffsetThreshold: 80
@@ -70,11 +70,11 @@ class SomeComponent extends Component {
 
     return (
       <GestureRecognizer
-        onSwipe={(direction, state) => this.onSwipe(direction, state)}
-        onSwipeUp={(state) => this.onSwipeUp(state)}
-        onSwipeDown={(state) => this.onSwipeDown(state)}
-        onSwipeLeft={(state) => this.onSwipeLeft(state)}
-        onSwipeRight={(state) => this.onSwipeRight(state)}
+        onSwipe={this.onSwipe}
+        onSwipeUp={this.onSwipeUp}
+        onSwipeDown={this.onSwipeDown}
+        onSwipeLeft={this.onSwipeLeft}
+        onSwipeRight={this.onSwipeRight}
         config={config}
         style={{
           flex: 1,
@@ -97,8 +97,9 @@ Can be passed within optional `config` property.
 
 | Params                     | Type          | Default | Description  |
 | -------------------------- |:-------------:| ------- | ------------ |
-| velocityThreshold          | Number        | 0.3     | Velocity that has to be breached in order for swipe to be triggered (`vx` and `vy` peroperties of `gestureState`) |
+| velocityThreshold          | Number        | 0.3     | Velocity that has to be breached in order for swipe to be triggered (`vx` and `vy` properties of `gestureState`) |
 | directionalOffsetThreshold | Number        | 80      | Absolute offset that shouldn't be breached for swipe to be triggered (`dy` for horizontal swipe, `dx` for vertical swipe) |
+| gestureIsClickThreshold    | Number        | 5       | Absolute distance that should be breached for the gesture to not be considered a click (`dx` or `dy` properties of `gestureState`) |
 
 ## Methods
 
