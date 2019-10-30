@@ -32,7 +32,6 @@ class GestureRecognizer extends Component {
   constructor(props, context) {
     super(props, context);
     this.swipeConfig = Object.assign(swipeConfig, props.config);
-    this.swipeEnabled = props.swipeEnabled | true;
 
     const responderEnd = this._handlePanResponderEnd.bind(this);
     const shouldSetResponder = this._handleShouldSetPanResponder.bind(this);
@@ -48,14 +47,11 @@ class GestureRecognizer extends Component {
     if (this.props.config !== prevProps.config) {
       this.swipeConfig = Object.assign(swipeConfig, this.props.config);
     }
-    if (this.props.swipeEnabled !== prevProps.swipeEnabled) {
-      this.swipeEnabled = this.props.swipeEnabled;
-    }
   }
 
   _handleShouldSetPanResponder(evt, gestureState) {
     return (
-      this.swipeEnabled &&
+      this.props.swipeEnabled &&
       evt.nativeEvent.touches.length === 1 &&
       !this._gestureIsClick(gestureState)
     );
@@ -126,5 +122,9 @@ class GestureRecognizer extends Component {
     return <View {...this.props} {...this._panResponder.panHandlers} />;
   }
 }
+
+GestureRecognizer.defaultProps = {
+  swipeEnabled: true,
+};
 
 export default GestureRecognizer;
