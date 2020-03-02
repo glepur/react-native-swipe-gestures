@@ -72,3 +72,50 @@ class SomeComponent extends Component {
 }
 
 export default SomeComponent;
+
+```	
+## Config	
+
+Can be passed within optional `config` property.	
+
+| Params                     | Type          | Default | Description  |	
+| -------------------------- |:-------------:| ------- | ------------ |	
+| velocityThreshold          | Number        | 0.3     | Velocity that has to be breached in order for swipe to be triggered (`vx` and `vy` properties of `gestureState`) |	
+| directionalOffsetThreshold | Number        | 80      | Absolute offset that shouldn't be breached for swipe to be triggered (`dy` for horizontal swipe, `dx` for vertical swipe) |	
+| gestureIsClickThreshold    | Number        | 5       | Absolute distance that should be breached for the gesture to not be considered a click (`dx` or `dy` properties of `gestureState`) |	
+
+## Methods	
+
+#### onSwipe(gestureName, gestureState)	
+
+| Params        | Type          | Description  |	
+| ------------- |:-------------:| ------------ |	
+| gestureName   | String        | Name of the gesture (look example above) |	
+| gestureState  | Object        | gestureState received from PanResponder  |	
+
+
+#### onSwipeUp(gestureState)	
+
+| Params        | Type          | Description  |	
+| ------------- |:-------------:| ------------ |	
+| gestureState  | Object        | gestureState received from PanResponder  |	
+
+#### onSwipeDown(gestureState)	
+
+| Params        | Type          | Description  |	
+| ------------- |:-------------:| ------------ |	
+| gestureState  | Object        | gestureState received from PanResponder  |	
+
+#### onSwipeLeft(gestureState)	
+
+| Params        | Type          | Description  |	
+| ------------- |:-------------:| ------------ |	
+| gestureState  | Object        | gestureState received from PanResponder  |	
+
+#### onSwipeRight(gestureState)	
+
+| Params        | Type          | Description  |	
+| ------------- |:-------------:| ------------ |	
+| gestureState  | Object        | gestureState received from PanResponder  |
+
+```
