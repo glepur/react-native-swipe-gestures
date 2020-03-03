@@ -100,7 +100,7 @@ class GestureRecognizer extends Component {
     const absDx = Math.abs(dx);
     const absDy = Math.abs(dy);
     const validHorizontal = this._isValidHorizontalSwipe(gestureState);
-    const validVertical = this._isValidHorizontalSwipe(gestureState);
+    const validVertical = this._isValidVerticalSwipe(gestureState);
     const horizontalDirection = dx > 0 ? SWIPE_RIGHT : SWIPE_LEFT;
     const verticalDirection = dy > 0 ? SWIPE_DOWN : SWIPE_UP;
     //check which delta is larger and choose that order to evaluate
