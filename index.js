@@ -42,13 +42,13 @@ class GestureRecognizer extends Component {
       onPanResponderTerminate: responderEnd
     });
   }
-  
+
   componentDidUpdate(prevProps) {
     if (this.props.config !== prevProps.config) {
       this.swipeConfig = Object.assign(swipeConfig, this.props.config);
     }
   }
-  
+
   _handleShouldSetPanResponder(evt, gestureState) {
     return (
       evt.nativeEvent.touches.length === 1 &&
@@ -97,10 +97,33 @@ class GestureRecognizer extends Component {
   _getSwipeDirection(gestureState) {
     const { SWIPE_LEFT, SWIPE_RIGHT, SWIPE_UP, SWIPE_DOWN } = swipeDirections;
     const { dx, dy } = gestureState;
-    if (this._isValidHorizontalSwipe(gestureState)) {
-      return dx > 0 ? SWIPE_RIGHT : SWIPE_LEFT;
-    } else if (this._isValidVerticalSwipe(gestureState)) {
-      return dy > 0 ? SWIPE_DOWN : SWIPE_UP;
+    const absDx = Math.abs(dx);
+    const absDy = Math.abs(dy);
+    const validHorizontal = this._isValidHorizontalSwipe(gestureState);
+    const validVertical = this._isValidHorizontalSwipe(gestureState);
+    //check which delta is larger and choose that order to evaluate
+    if (absDx > absDy) {
+      if (validHorizontal) {
+        return (dx > 0)
+          ? SWIPE_RIGHT
+          : SWIPE_LEFT;
+      } else if (validVertical) {
+        return (dy > 0)
+          ? SWIPE_DOWN
+          : SWIPE_UP;
+      }
+    }
+    else {
+      if (validHorizontal) {
+        return (dy > 0)
+          ? SWIPE_DOWN
+          : SWIPE_UP;
+      }
+      else if (validVertical) {
+        return (dx > 0)
+          ? SWIPE_RIGHT
+          : SWIPE_LEFT;
+      }
     }
     return null;
   }
