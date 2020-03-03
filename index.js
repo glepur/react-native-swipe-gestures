@@ -112,11 +112,11 @@ class GestureRecognizer extends Component {
       }
     }
     else {
-      if (validHorizontal) {
-        return horizontalDirection;
-      }
-      else if (validVertical) {
+      if (validVertical) {
         return verticalDirection;
+      }
+      else if (validHorizontal) {
+        return horizontalDirection;
       }
     }
     return null;
