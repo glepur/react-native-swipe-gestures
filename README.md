@@ -70,11 +70,11 @@ class SomeComponent extends Component {
 
     return (
       <GestureRecognizer
-        onSwipe={this.onSwipe}
-        onSwipeUp={this.onSwipeUp}
-        onSwipeDown={this.onSwipeDown}
-        onSwipeLeft={this.onSwipeLeft}
-        onSwipeRight={this.onSwipeRight}
+        onSwipe={(direction, state) => this.onSwipe(direction, state)}
+        onSwipeUp={(state) => this.onSwipeUp(state)}
+        onSwipeDown={(state) => this.onSwipeDown(state)}
+        onSwipeLeft={(state) => this.onSwipeLeft(state)}
+        onSwipeRight={(state) => this.onSwipeRight(state)}
         config={config}
         style={{
           flex: 1,
