@@ -4,10 +4,11 @@ import React, { Component } from "react";
 import { View, PanResponder } from "react-native";
 
 export const swipeDirections = {
-  SWIPE_UP: "SWIPE_UP",
-  SWIPE_DOWN: "SWIPE_DOWN",
-  SWIPE_LEFT: "SWIPE_LEFT",
-  SWIPE_RIGHT: "SWIPE_RIGHT"
+  SWIPE_UP: 'SWIPE_UP',
+  SWIPE_DOWN: 'SWIPE_DOWN',
+  SWIPE_LEFT: 'SWIPE_LEFT',
+  SWIPE_RIGHT: 'SWIPE_RIGHT',
+  ON_PRESS: 'ON_PRESS',
 };
 
 const swipeConfig = {
@@ -74,9 +75,11 @@ class GestureRecognizer extends Component {
       onSwipeUp,
       onSwipeDown,
       onSwipeLeft,
-      onSwipeRight
+      onSwipeRight,
+      onPress
     } = this.props;
-    const { SWIPE_LEFT, SWIPE_RIGHT, SWIPE_UP, SWIPE_DOWN } = swipeDirections;
+    const { SWIPE_LEFT, SWIPE_RIGHT, SWIPE_UP, SWIPE_DOWN, ON_PRESS } = swipeDirections;
+
     onSwipe && onSwipe(swipeDirection, gestureState);
     switch (swipeDirection) {
       case SWIPE_LEFT:
@@ -91,13 +94,18 @@ class GestureRecognizer extends Component {
       case SWIPE_DOWN:
         onSwipeDown && onSwipeDown(gestureState);
         break;
+      case ON_PRESS:
+        onPress && onPress(gestureState);
+        break;
     }
   }
 
   _getSwipeDirection(gestureState) {
-    const { SWIPE_LEFT, SWIPE_RIGHT, SWIPE_UP, SWIPE_DOWN } = swipeDirections;
+    const { SWIPE_LEFT, SWIPE_RIGHT, SWIPE_UP, SWIPE_DOWN, ON_PRESS } = swipeDirections;
     const { dx, dy } = gestureState;
-    if (this._isValidHorizontalSwipe(gestureState)) {
+    if(this._gestureIsClick(gestureState)) {
+       return ON_PRESS;
+    } else if (this._isValidHorizontalSwipe(gestureState)) {
       return dx > 0 ? SWIPE_RIGHT : SWIPE_LEFT;
     } else if (this._isValidVerticalSwipe(gestureState)) {
       return dy > 0 ? SWIPE_DOWN : SWIPE_UP;
