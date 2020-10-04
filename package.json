@@ -1,10 +1,11 @@
 {
   "name": "react-native-swipe-gestures",
-  "types": "index.d.ts",
   "version": "1.0.5",
   "description": "4-directional swipe gestures for react-native",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
+    "prebuild": "rm -rf dist/",
+    "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -20,5 +21,22 @@
     "url": "https://github.com/glepur/react-native-swipe-gestures/issues"
   },
   "author": "Goran Lepur <goran.lepur1@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "peerDependencies": {
+    "react": "*",
+    "react-native": "*"
+  },
+  "devDependencies": {
+    "@react-native-community/eslint-config": "^2.0.0",
+    "@types/node": "^14.11.2",
+    "@types/react": "^16.9.50",
+    "@types/react-native": "^0.63.23",
+    "@typescript-eslint/eslint-plugin": "^4.3.0",
+    "@typescript-eslint/parser": "^4.3.0",
+    "eslint": "^7.10.0",
+    "eslint-plugin-react-hooks": "1.7.0",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.1.2",
+    "typescript": "^4.0.3"
+  }
 }

@@ -1,0 +1,56 @@
+{
+  "compilerOptions": {
+    "allowJs": false,
+    "allowSyntheticDefaultImports": true,
+    "allowUmdGlobalAccess": true,
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": false,
+    "alwaysStrict": false,
+    "baseUrl": ".",
+    "declaration": true,
+    "emitDeclarationOnly": false,
+    "emitDecoratorMetadata": true,
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "isolatedModules": true,
+    "jsx": "react-native",
+    "lib": [
+      "DOM",
+      "DOM.Iterable",
+      "ESNext"
+    ],
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "noEmit": false,
+    "paths": {
+      "react-native-swipe-gestures": [
+        "./src/*"
+      ]
+    },
+    "outDir": "dist",
+    "resolveJsonModule": true,
+    "skipDefaultLibCheck": true,
+    "skipLibCheck": true,
+    "strict": false,
+    "strictNullChecks": false,
+    "target": "ES5",
+    "typeRoots": [
+      "node_modules/@types/"
+    ]
+  },
+  "exclude": [
+    "__tests__/",
+    "dist/",
+    "node_modules/",
+    "babel.config.js",
+    "metro.config.js",
+    "jest.config.js",
+    "postcss.config.js",
+    "react-native.config.js",
+    "transformer.js",
+    "tsconfig.json"
+  ],
+  "include": [
+    "src/"
+  ]
+}

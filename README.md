@@ -4,16 +4,14 @@ React Native component for handling swipe gestures in up, down, left and right d
 
 ## Installation
 
-`npm i -S react-native-swipe-gestures`
+`yarn add react-native-swipe-gestures`
 
 ## Usage
 
 ```javascript
-'use strict';
-
 import React, {Component} from 'react';
 import {View, Text} from 'react-native';
-import GestureRecognizer, {swipeDirections} from 'react-native-swipe-gestures';
+import GestureRecognizer, {SwipeDirections} from 'react-native-swipe-gestures';
 
 class SomeComponent extends Component {
 
@@ -43,7 +41,7 @@ class SomeComponent extends Component {
   }
 
   onSwipe(gestureName, gestureState) {
-    const {SWIPE_UP, SWIPE_DOWN, SWIPE_LEFT, SWIPE_RIGHT} = swipeDirections;
+    const {SWIPE_UP, SWIPE_DOWN, SWIPE_LEFT, SWIPE_RIGHT} = SwipeDirections;
     this.setState({gestureName: gestureName});
     switch (gestureName) {
       case SWIPE_UP:
@@ -105,10 +103,10 @@ Can be passed within optional `config` property.
 
 #### onSwipe(gestureName, gestureState)
 
-| Params        | Type          | Description  |
-| ------------- |:-------------:| ------------ |
-| gestureName   | String        | Name of the gesture (look example above) |
-| gestureState  | Object        | gestureState received from PanResponder  |
+| Params        | Type            | Description  |
+| ------------- |:-------------:  | ------------ |
+| gestureName   | SwipeDirections | Name of the gesture (look example above) |
+| gestureState  | Object          | gestureState received from PanResponder  |
 
 
 #### onSwipeUp(gestureState)
