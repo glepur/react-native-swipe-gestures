@@ -178,7 +178,9 @@ class GestureRecognizer extends Component<GestureRecognizerProps> {
   };
 
   render() {
-    return <View {...this.props} {...this.panResponder.panHandlers} />;
+    const {props, panResponder} = this;
+
+    return <View {...props} {...panResponder.panHandlers} />;
   }
 }
 
