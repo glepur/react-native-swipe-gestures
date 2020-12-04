@@ -32,6 +32,18 @@ declare module 'react-native-swipe-gestures' {
      * @default 5
      */
     gestureIsClickThreshold?: number;
+
+    /**
+     * Need vertical scroll or not
+     * @default false
+     */
+    needVerticalScroll?: Boolean;
+
+    /**
+     * Absolute distance that to decide if give touch event to ScrollView
+     * @default 5 
+     */
+    scrollVerticalThreshold?: number;
   }
 
   class GestureRecognizer extends Component<GestureRecognizerProps> {}
