@@ -13,7 +13,9 @@ export const swipeDirections = {
 const swipeConfig = {
   velocityThreshold: 0.3,
   directionalOffsetThreshold: 80,
-  gestureIsClickThreshold: 5
+  gestureIsClickThreshold: 5,
+  needVerticalScroll: false,
+  scrollVerticalThreshold: 5
 };
 
 function isValidSwipe(
@@ -50,6 +52,16 @@ class GestureRecognizer extends Component {
   }
   
   _handleShouldSetPanResponder(evt, gestureState) {
+
+    // start --- 2020/12/4 fix the problem that scroll view can't work inside on ios
+    if (this.swipeConfig.needVerticalScroll
+      && ( gestureState.dy > this.swipeConfig.scrollVerticalThreshold
+          || gestureState.dy < -this.swipeConfig.scrollVerticalThreshold )
+      ) {
+      return false
+    }
+    // end --- 2020/12/4 fix the problem that scroll view can't work inside on ios
+
     return (
       evt.nativeEvent.touches.length === 1 &&
       !this._gestureIsClick(gestureState)

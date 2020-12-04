@@ -100,6 +100,8 @@ Can be passed within optional `config` property.
 | velocityThreshold          | Number        | 0.3     | Velocity that has to be breached in order for swipe to be triggered (`vx` and `vy` properties of `gestureState`) |
 | directionalOffsetThreshold | Number        | 80      | Absolute offset that shouldn't be breached for swipe to be triggered (`dy` for horizontal swipe, `dx` for vertical swipe) |
 | gestureIsClickThreshold    | Number        | 5       | Absolute distance that should be breached for the gesture to not be considered a click (`dx` or `dy` properties of `gestureState`) |
+|needVerticalScroll|Boolean|false|Need vertical scroll or not|
+|scrollVerticalThreshold|Number|5|Absolute distance that to decide if give touch event to ScrollView|
 
 ## Methods
 
