@@ -13,7 +13,11 @@ export const swipeDirections = {
 const swipeConfig = {
   velocityThreshold: 0.3,
   directionalOffsetThreshold: 80,
-  gestureIsClickThreshold: 5
+  gestureIsClickThreshold: 5,
+  enableSwipeUp: true,
+  enableSwipeDown: true,
+  enableSwipeLeft: true,
+  enableSwipeRight: true,
 };
 
 function isValidSwipe(
@@ -76,20 +80,26 @@ class GestureRecognizer extends Component {
       onSwipeLeft,
       onSwipeRight
     } = this.props;
+    const {
+      enableSwipeUp,
+      enableSwipeDown,
+      enableSwipeLeft,
+      enableSwipeRight,
+    } = this.swipeConfig
     const { SWIPE_LEFT, SWIPE_RIGHT, SWIPE_UP, SWIPE_DOWN } = swipeDirections;
     onSwipe && onSwipe(swipeDirection, gestureState);
     switch (swipeDirection) {
-      case SWIPE_LEFT:
-        onSwipeLeft && onSwipeLeft(gestureState);
-        break;
-      case SWIPE_RIGHT:
-        onSwipeRight && onSwipeRight(gestureState);
-        break;
       case SWIPE_UP:
-        onSwipeUp && onSwipeUp(gestureState);
+        if (enableSwipeUp) onSwipeUp && onSwipeUp(gestureState);
         break;
       case SWIPE_DOWN:
-        onSwipeDown && onSwipeDown(gestureState);
+        if (enableSwipeDown) onSwipeDown && onSwipeDown(gestureState);
+        break;
+      case SWIPE_LEFT:
+        if (enableSwipeLeft) onSwipeLeft && onSwipeLeft(gestureState);
+        break;
+      case SWIPE_RIGHT:
+        if (enableSwipeRight) onSwipeRight && onSwipeRight(gestureState);
         break;
     }
   }

@@ -1,24 +1,24 @@
 {
-  "name": "react-native-swipe-gestures",
+  "name": "react-native-swipe-actions",
   "types": "index.d.ts",
-  "version": "1.0.5",
-  "description": "4-directional swipe gestures for react-native",
+  "version": "1.0.6",
+  "description": "4-directional swipe-triggered actions for react-native. ",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:glepur/react-native-swipe-gestures.git"
+    "url": "git@github.com:johanneslil/react-native-swipe-gestures.git"
   },
   "keywords": [
     "react-native",
     "swipe",
+    "action",
     "gesture"
   ],
   "bugs": {
-    "url": "https://github.com/glepur/react-native-swipe-gestures/issues"
   },
-  "author": "Goran Lepur <goran.lepur1@gmail.com>",
+  "author": "Johannes Liljedahl <jocka.liljedahl@gmail.com>",
   "license": "MIT"
 }
